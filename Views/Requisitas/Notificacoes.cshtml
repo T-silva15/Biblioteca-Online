@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Biblioteca_LAB.Models.Requisita>
+
+@{
+    ViewData["Title"] = "Notificações";
+}
+
+<h1>Requisições Atrasadas</h1>
+
+<br />
+<br />
+
+<table id="tabelaNotificacoes" class="table-backoffice">
+    <thead>
+        <tr>
+            <th>Data de Requisição</th>
+            <th>Nome do Leitor</th>
+            <th>Título do Livro</th>
+            <th>Dias de Atraso</th>
+            <th>Contato do Leitor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var requisicao in Model)
+        {
+            <tr>
+                <td>@requisicao.DataRequisicao.ToShortDateString()</td>
+                <td>@requisicao.IdLeitorRNavigation.Nome</td>
+                <td>@requisicao.IsbnRNavigation.Titulo</td>
+                <td>
+                    @if ((DateTime.Now - requisicao.DataRequisicao).Days - 14 > 0)
+                    {
+                        <span style="color:red;">@((DateTime.Now - requisicao.DataRequisicao).Days - 14) dias</span>
+                    }
+                    else
+                    {
+                        <span>Sem atraso</span>
+                    }
+                </td>
+                <td>@requisicao.IdLeitorRNavigation.Contacto</td>
+            </tr>
+        }
+    </tbody>
+</table>

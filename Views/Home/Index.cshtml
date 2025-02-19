@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Biblioteca_LAB.Models.Livro>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mt-5" style="background-color: #f0f0f0;">
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h2 class="display-4 text-primary" style="color: orange; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+            Bem-vindo à Biblioteca da UTAD
+        </h2>
+        <p class="lead text-secondary">Descubra o seu próximo livro favorito</p>
+    </div>
+
+    <!-- Lista de livros -->
+    <div class="catalogo">
+        @foreach (var livro in Model)
+        {
+            <div class="livro-item fade-in">
+                <img src="@Url.Content("~/images/capasLivros/" + livro.Capa)" alt="Capa do Livro" class="img-thumbnail shadow-sm" />
+                <div class="livro-titulo text-center mt-2">@livro.Titulo</div>
+            </div>
+        }
+    </div>
+
+    <!-- Link de pesquisa -->
+    <div class="text-center mt-5">
+        <a asp-action="Catalogo" asp-controller="Livros" class="btn btn-lg btn-warning text-white font-weight-bold shadow">
+            Comece agora a pesquisar!
+        </a>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f0f0f0; /* Branco mais escuro */
+    }
+
+    .catalogo {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    .livro-item {
+        width: 160px;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+        .livro-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .livro-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    .livro-titulo {
+        font-size: 1rem;
+        color: #343a40;
+        font-weight: bold;
+    }
+
+    .btn-warning:hover {
+        background-color: #e68a00;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const items = document.querySelectorAll(".livro-item");
+        const itemsPerBatch = 3; // Exibir 3 itens por vez
+        let currentIndex = 0;
+
+        function showBatch() {
+            items.forEach((item, index) => {
+                item.classList.remove("visible");
+            });
+
+            for (let i = 0; i < itemsPerBatch; i++) {
+                const itemIndex = (currentIndex + i) % items.length;
+                setTimeout(() => {
+                    items[itemIndex].classList.add("visible");
+                }, i * 150);
+            }
+
+            currentIndex = (currentIndex + itemsPerBatch) % items.length;
+        }
+
+        showBatch();
+        setInterval(showBatch, 4000); // Alterna os itens a cada 4 segundos
+    });
+</script>

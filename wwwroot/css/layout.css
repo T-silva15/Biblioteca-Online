@@ -1,0 +1,191 @@
+﻿body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Nunito;
+    font-size: 18px;
+    background-color: #f0f0f0;  
+    color: #333333;
+}
+
+ Navbar Styling 
+.navbar {
+    display: flex;
+    background-color: #f0f0f0 !important; 
+    border-bottom: 2px solid #ff9900; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 80px;
+    align-content:center !important;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #ff7700;  
+}
+
+    .navbar-brand:hover {
+        color: #ff9900;
+    }
+
+.nav-link {
+    padding: .5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+    color: #333333;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+    .nav-link:hover {
+        background-color: #eee;
+    }
+
+.navbar-toggler {
+    border-color: #ff7700;
+}
+
+.footer {
+    background-color: #f0f0f0;
+    color: #333333;
+    text-align: center;
+    padding: 5px 0;
+}
+
+form-layout {
+    display: inline;
+    margin: 0px 0px 0px 0px !important; 
+}
+
+.btn-primary {
+    background-color: #ff7700 !important;
+    border-color: #ff7700 !important;
+    margin-right: 10px !important;
+    margin-left: 20px !important;
+}
+
+    .btn-primary:hover {
+        background-color: #ff9900 !important;
+        border-color: #ff9900 !important;
+    }
+
+.bg-orange {
+    background-color: #ff7700 !important;
+}
+
+.text-orange {
+    color: #ff7700 !important;
+}
+
+.bg-light-gray {
+    background-color: #f0f0f0 !important;
+}
+
+.text-gray {
+    color: #333333 !important;
+}
+
+#backOfficeModalLabel {
+    margin-left: 115px;
+    font-family: Nunito;
+}
+
+.btn-orange-secondary-backoffice,
+.btn-orange-secondary,
+.btn-orange-backoffice {
+    background-color: #ff9900;
+    color: #fff;
+    border-radius: 0;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin: 10px; 
+}
+
+.btn-orange-secondary-backoffice {
+    width: 450px;
+}
+
+.btn-orange-secondary {
+    width: 150px;
+}
+
+.btn-orange-backoffice {
+    width: auto; 
+}
+
+    .btn-orange-secondary-backoffice:hover,
+    .btn-orange-secondary:hover,
+    .btn-orange-backoffice:hover {
+        background-color: #ff7700;
+    }
+
+.btn-gray-secondary {
+    background-color: #e0e0e0;
+    color: #333333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+    .btn-gray-secondary:hover {
+        background-color: #ddd;
+    }
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-grow: 1;
+        justify-content: flex-start;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .nav-item {
+        margin-bottom: 10px;
+    }
+}
+
+.backoffice-actions {
+    margin: 5px -25px 5px 50px;
+}
+
+
+.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); 
+}
+
+.navbar-search {
+    margin-left: 20px;
+}
+
+    .navbar-search input {
+        flex: 1;
+        width: 600px;
+    }
+
+    .navbar-search button {
+        height: 45px;
+        
+        padding: 0 15px;
+        margin-left: -10px;
+        margin-right: 50px;
+    }
+
+#btnAddLivros,
+#btnListEmp {
+    width: 200px;
+    height: 80px;
+    align-content:center;
+    text-align:center;
+}
+
+#bibModalLabel {
+    margin-left: 120px;
+    font-family: Nunito;
+}

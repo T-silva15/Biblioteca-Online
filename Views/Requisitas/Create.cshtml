@@ -1,0 +1,54 @@
+﻿@model Biblioteca_LAB.Models.RequisitaViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Requisita</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Campo ISBN (input manual) -->
+            <div class="form-group">
+                <label asp-for="IsbnR" class="control-label"></label>
+                <input asp-for="IsbnR" class="form-control" value="@Model.IsbnR" readonly />
+                <span asp-validation-for="IsbnR" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Email do Leitor (input manual) -->
+            <div class="form-group">
+                <label asp-for="EmailUtilizador" class="control-label"></label>
+                <input asp-for="EmailUtilizador" class="form-control" placeholder="Introduza o Email do Leitor" />
+                <span asp-validation-for="EmailUtilizador" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Data da Requisição (input manual) -->
+            <div class="form-group">
+                <label asp-for="DataRequisicao" class="control-label"></label>
+                <input asp-for="DataRequisicao" class="form-control" type="datetime-local" value="@Model.DataRequisicao.ToString("yyyy-MM-ddTHH:mm", System.Globalization.CultureInfo.InvariantCulture)" />
+                <span asp-validation-for="DataRequisicao" class="text-danger"></span>
+            </div>
+
+
+            <!-- Botão para submeter o formulário -->
+            <div class="form-group">
+                <input type="submit" value="Requisitar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

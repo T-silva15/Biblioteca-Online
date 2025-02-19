@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Biblioteca_LAB.Models.Utilizador>
+
+@{
+    ViewData["Title"] = "UserList";
+}
+
+<div id="tabela">
+    <div id="searchContainer">
+        <form asp-action="SearchUsers" method="post" data-ajax="true" data-ajax-method="post"
+              data-ajax-update="#tabela" data-ajax-mode="replace">
+            <div class="input-group">
+                <input class="form-control search-box" type="text" id="searchString" name="searchString" placeholder="Pesquisa">
+                <button type="submit" class="btn btn-orange-secondary-backoffice-search"><i class="bi bi-search"></i></button>
+            </div>
+        </form>
+    </div>
+
+    <br />
+
+    <table class="table table-backoffice">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contacto)
+                </th>
+                <th>
+                    Morada
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tipo)
+                </th>
+                <th>
+                    Bloqueado
+                </th>
+                <th>
+                    Data Bloqueio
+                </th>
+                <th>
+                    Ações
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="user_@item.Id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contacto)
+                    </td>
+                    <td>
+                        @($"{item.CodigoPostal} {item.Cidade} {item.Endereco}")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Block)
+                    </td>
+                    <td>
+                        <a id="data_@item.Id">@Html.DisplayFor(modelItem => item.DataBlock)</a>
+                    </td>
+                    <td>
+                        <a asp-action="EditUser" class="backoffice-actions" asp-route-id="@item.Id"><i style="color:deepskyblue;" class="bi bi-pencil-square"></i></a>
+
+                        <a asp-action="EliminarUser" asp-route-id="@item.Id" class="backoffice-actions" data-ajax="true" data-ajax-mode="replace"
+                           data-item-id="@item.Id" data-ajax-method="get" data-ajax-update="#user_@item.Id"><i style="color:red;" class="bi bi-trash3"></i></a>
+
+                        @if (item.Block != true)
+                        {
+                            <a asp-action="BlockPartial" asp-controller="Backoffice" class="backoffice-actions" asp-route-id="@item.Id" data-ajax="true" data-ajax-mode="replace"
+                               data-item-id="@item.Id" data-ajax-method="get" data-ajax-update="#data_@item.Id"><i style="color:orange;" class="bi bi-lock"></i></a>
+                        }
+                        else
+                        {
+                            <a asp-action="Unblock" asp-controller="Backoffice" class="backoffice-actions" asp-route-id="@item.Id"><i style="color:green;" class="bi bi-unlock"></i></a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

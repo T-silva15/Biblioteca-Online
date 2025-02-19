@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Biblioteca_LAB.Models.Livro>
+
+@{
+    ViewData["Title"] = "Catálogo de Livros";
+}
+
+<h1 class="text-center text-primary mb-4" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">Catálogo de Livros</h1>
+
+<form method="get" class="wide-search-form p-3 shadow-sm rounded bg-light">
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+        <input type="text" id="search" name="search" value="@ViewBag.Search" class="form-control w-25" placeholder="Pesquisar por Título" />
+
+        <select id="genero" name="genero" class="form-select w-25">
+            <option value="">@(ViewBag.Genero != null ? ViewBag.Genero : "Género")</option>
+            @foreach (var genre in ViewBag.Generos)
+            {
+                <option value="@genre">@genre</option>
+            }
+        </select>
+
+        <select id="autor" name="autor" class="form-select w-25">
+            <option value="">@(ViewBag.Autor != null ? ViewBag.Autor : "Autor")</option>
+            @foreach (var autor in ViewBag.AutoresPopulares)
+            {
+                <option value="@autor">@autor</option>
+            }
+        </select>
+
+        <select id="preco" name="preco" class="form-select w-25">
+            <option value="">Preço</option>
+            <option value="0-10">0-10€</option>
+            <option value="10-20" >10-20€</option>
+            <option value="20+">20€+</option>
+        </select>
+
+        <button class="btn btn-primary btn-search" type="submit">Pesquisar</button>
+    </div>
+</form>
+
+<hr />
+
+<!-- Lista de livros -->
+<div class="catalogo">
+    @foreach (var livro in Model)
+    {
+        <a asp-action="Detalhes" style="text-decoration:none;!important" asp-route-id="@livro.Isbn">
+        <div class="livro-item shadow-sm p-3 rounded bg-white">
+                <img src="~/images/capasLivros/@livro.Capa" alt="Capa do Livro" class="rounded mb-2" style="width: 150px; height: 200px; object-fit: scale-down;" />
+            
+            <h5 class="livro-titulo">@livro.Titulo</h5>
+            <p class="text-muted">@livro.Genero</p>
+            <p class="text-success font-weight-bold">@livro.Preco.ToString("0.00 €")</p>
+        </div>
+        </a>
+    }
+</div>
+
+<!-- Paginação -->
+<div class="paginacao mt-4 d-flex justify-content-center">
+    @for (int i = 1; i <= (int)ViewBag.TotalPages; i++)
+    {
+        <a asp-action="Catalogo" asp-route-page="@i" class="btn btn-sm mx-1 @(ViewBag.Page == i ? "btn-primary text-white" : "btn-outline-secondary")">@i</a>
+    }
+</div>
+
+<!-- Estilos internos (CSS) -->
+<style>
+    .catalogo {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .livro-item {
+        width: 200px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        border: 2px solid transparent; /* Adiciona uma borda inicial transparente */
+    }
+
+        /* Efeito de hover no livro */
+        .livro-item:hover {
+            transform: scale(1.05); /* Aumenta o tamanho do item */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombramento ao redor do item */
+            background-color: #f8f9fa; /* Altera a cor de fundo ao passar o mouse */
+            border-color: #ffc107; /* Coloca uma borda amarela quando em hover */
+        }
+
+    /* Título do livro sempre em laranja com sombreado */
+    .livro-titulo {
+        color: black; /* Cor laranja para o título */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombramento do texto */
+    }
+
+    .wide-search-form input,
+    .wide-search-form select {
+        min-width: 200px;
+    }
+
+    .paginacao {
+        text-align: center;
+    }
+</style>

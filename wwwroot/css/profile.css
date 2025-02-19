@@ -1,0 +1,243 @@
+﻿.profile-section {
+    padding: 30px;
+}
+
+    .profile-section h3 {
+        color: #333;
+        margin-bottom: 30px;
+        font-size: 1.2rem;
+    }
+
+    .profile-section .form-floating {
+        margin-bottom: 20px;
+    }
+
+    .profile-section .form-control {
+        border-color: #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        padding: 12px 15px;
+    }
+
+    .profile-section .form-label {
+        color: #333;
+        font-size: 0.9rem;
+    }
+
+    .profile-section .text-danger {
+        color: #ff0000;
+    }
+
+    .profile-section .btn-primary {
+        background-color: #ff7700 !important;
+        border-color: #ff7700 !important;
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+        .profile-section .btn-primary:hover {
+            background-color: #ff9900 !important;
+            border-color: #ff9900 !important;
+        }
+
+    .profile-section .input-group-text {
+        background-color: #dff0d8;
+        border-color: #dff0d8;
+    }
+
+.btn-delete-profile {
+    background-color: #ff0000 !important;
+    color: #fff;
+    border-color: #ff0000;
+    color: #fff !important;
+    padding: 10px 20px;
+    border: none !important;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 22px;
+}
+
+.btn-profile {
+    background-color: #ff9900;
+    color: #fff;
+    border-color: #ff0000;
+    padding: 8px 16px;
+}
+
+.nav-pills .nav-link {
+    color: #333;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+    .nav-pills .nav-link.active,
+    .nav-pills .show > .nav-link {
+        background-color: #ff9900;
+    }
+
+.text-center {
+    text-align: center !important;
+}
+
+.col-md-6 {
+    margin: 0 auto !important;
+}
+
+.form-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+}
+
+.form-container-register {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 9000px;
+    margin: 0 auto;
+}
+
+.form-row-register {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group-register {
+    flex: 1;
+}
+
+.btn-primary-register {
+    grid-column: span 2;
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #ff7700;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    width: 1300px;
+}
+
+    .btn-primary-register:hover {
+        background-color: #e05500;
+    }
+
+.form-container-login {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-left: 300px;
+}
+
+.form-row-login {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group-login {
+    width: 100%;
+}
+
+.btn-primary-login-login {
+    padding: 10px;
+    background-color: #ff6600;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 24px !important;
+    text-align: center;
+    width: 700px;
+}
+
+    .btn-primary-login-login:hover {
+        background-color: #e05500;
+    }
+
+#forgot-password {
+    font-size: 18px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+    #forgot-password:hover {
+        text-decoration: underline;
+    }
+
+.form-container-index {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 9000px;
+    width: 3000px;
+    margin: 0 auto;
+}
+
+.form-row-index {
+    display: flex;
+    gap: 20px;
+    height: 300px !important;
+    width: 1000px !important;
+    margin-left: -250px;
+    margin-bottom: -240px;
+    margin-top: 20px;
+}
+
+.form-group-index {
+    flex: 1;
+    width: 3000px;
+}
+
+.btn-primary-index {
+    grid-column: span 2;
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #ff7700;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    width: 1000px !important;
+    margin-left: -250px !important;
+    margin-top: 30px !important;
+}
+
+#tituloPdata {
+    margin-bottom: 25px !important;
+}
+
+.access-denied-title {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.access-denied-text {
+    font-weight: 510;
+    margin-top: 60px;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.container-denied {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    margin-top: 150px;
+    height: 100vh;
+}
+
+.btn-denied {
+    margin-top: 70px;
+    background-color: #ff7700 !important;
+    color: #fff;
+    border-color: #ff0000 !important;
+    padding: 18px 36px !important;
+    align-content: center !important;
+    border-radius: 4px;
+    text-decoration: none
+}

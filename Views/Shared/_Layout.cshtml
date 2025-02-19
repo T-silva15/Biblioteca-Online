@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Biblioteca</title>
+    <script type="importmap"></script>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/Biblioteca_LAB.styles.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/layout.css">
+    <link rel="stylesheet" href="~/css/profile.css">
+	<link rel="stylesheet" href="~/css/backoffice.css">
+	<link rel="stylesheet" href="~/css/livros.css">
+	<link href="~/css/home.css" rel="stylesheet" />
+	<link href="~/css/requisitas.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid d-flex align-items-center">
+                <div class="navbar-left d-flex align-items-center">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Biblioteca_LAB</a>
+                    <ul class="navbar-nav flex-grow-1 d-none d-sm-flex">
+                        <li class="nav-item">
+                            <a class="btn btn-primary" asp-controller="Home" asp-action="Informacoes">Informações</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Centered Search Bar -->
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="navbar-center">
+                        <div class="navbar-search">
+                            <form class="d-flex" asp-controller="Livros" asp-action="Catalogo" method="get">
+                                <input class="form-layout form-control me-2" type="search" name="searchString" placeholder="Pesquisar livros" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">
+                                    <i style="color: white" class="bi bi-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                }
+
+                <!-- Right-Aligned Section -->
+                <div class="navbar-right d-flex align-items-center">
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">     
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-ajax/jquery.unobtrusive-ajax.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+

@@ -1,0 +1,41 @@
+﻿@model Biblioteca_LAB.Models.Requisita
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Requisita</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IsbnR" />
+            <input type="hidden" asp-for="IdLeitorR" />
+            <div class="form-group">
+                <label asp-for="DataEntregaR" class="control-label"></label>
+                <input asp-for="DataEntregaR" class="form-control" />
+                <span asp-validation-for="DataEntregaR" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="DataRequisicao" />
+            <div class="form-group">
+                <label asp-for="ValorMulta" class="control-label"></label>
+                <input asp-for="ValorMulta" class="form-control" />
+                <span asp-validation-for="ValorMulta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

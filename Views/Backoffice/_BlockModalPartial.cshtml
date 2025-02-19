@@ -1,0 +1,15 @@
+﻿@model Biblioteca_LAB.Models.Utilizador
+
+<form asp-action="Block" asp-controller="Backoffice" id="blockUserForm" method="post">
+    <span class="form-group">
+        <input type="hidden" asp-for="Id" value="@Model.Id">
+        <input type="date" id="blockDate" name="blockDate" class="form-control" required />
+        <input type="text" id="blockDescription" name="blockDescription" class="form-control" />
+        <button type="submit" data-ajax="true" data-ajax-mode="replace"
+                data-ajax-method="get" data-ajax-update="#user_@Model.Id" class="btn btn-primary">
+            >
+        </button>
+    </span>
+</form>
+
+           

@@ -1,0 +1,148 @@
+﻿/* Color Palette */
+:root {
+    --background-color: #f0f0f0; /* Light Gray */
+    --text-color: #333333; /* Dark Gray */
+    --button-color: #ff7700; /* Orange */
+    --button-hover-color: #ff9900; /* Lighter Orange */
+    --border-color: #cccccc; /* Light Gray Border */
+}
+
+/* Table Styles */
+.table-backoffice {
+    background-color: var(--background-color);
+    border-collapse: collapse;
+    width: 90%; /* Adjust this value as needed */
+    margin-bottom: 20px;
+    border: none; /* Remove outer border */
+}
+
+    .table-backoffice th {
+        background-color: var(--text-color);
+        color: #fff;
+        padding: 10px;
+        text-align: center; /* Center header text */
+        border: none; /* Remove top and outer borders */
+        border-bottom: 1px solid var(--border-color); /* Keep bottom border for better readability */
+    }
+
+    .table-backoffice td {
+        border: none; /* Remove all borders */
+        padding: 15px; /* Increase padding for better spacing */
+        color: var(--text-color);
+        align-content: center;
+        text-align: center;
+    }
+
+/* Button Styles */
+.btn {
+    background-color: var(--button-color) !important;
+    color: #fff !important;
+    padding: 8px 16px;
+    border: none !important;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+    .btn:hover {
+        background-color: var(--button-hover-color) !important;
+    }
+
+.btn-outline-primary { /* Override Bootstrap class for primary buttons */
+    background-color: transparent !important;
+    color: var(--button-color) !important;
+    border: 1px solid var(--button-color) !important;
+}
+
+    .btn-outline-primary:hover {
+        background-color: var(--button-hover-color) !important;
+        color: #fff !important;
+    }
+
+/* Secondary Orange Button */
+
+#userlist {
+    background-color: #ff9900; /* Lighter shade of orange */
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-left: -230px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-content: center;
+    width: 250px;
+    height: 50px;
+    font-family: Nunito;
+    font-size: 18px;
+}
+
+#aprovlist {
+    background-color: #ff9900; /* Lighter shade of orange */
+    color: #fff;
+    border: none;
+    width: 400px;
+    margin-left: 20px;
+    align-content: center;
+    width: 250px;
+    height: 50px;
+    font-family: Nunito;
+    font-size: 18px;
+}
+
+    #aprovlist:hover {
+        background-color: #ff7700;
+    }
+
+    #userlist:hover {
+        background-color: #ff7700;
+    }
+
+    #aprovlist:hover {
+        background-color: #ff7700;
+    }
+
+#buttons-backoffice {
+    position: relative;
+    width:1000px;
+    margin-bottom: 10px;
+    align-content: stretch;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+}
+
+.btn-orange-secondary-backoffice-search {
+    background-color: #ff9900;
+    color: #fff;
+    border: none;
+    padding: 10px 15px; 
+    align-content:center;
+    cursor: pointer;
+    height:50px;
+}
+
+    .btn-orange-secondary-backoffice-search:hover {
+        background-color: #ff7700;
+    }
+
+/* Search Input and Button */
+#searchContainer {
+    display: flex; /* Use flexbox for better alignment */
+}
+
+    #searchContainer input[type="text"] {
+        width: 300px; /* Adjust width as needed */
+        margin-right: 10px;
+    }
+
+#tabela {
+    display: block;
+    width: 123%; 
+    margin-left: -115px;
+}
+
+#title-backoffice {
+    font-family: Nunito;
+    font-size: 40px;
+    margin-left: -230px;
+}

@@ -1,0 +1,168 @@
+﻿@model Biblioteca_LAB.Models.Livro
+
+@{
+    ViewData["Title"] = "Detalhes do Livro";
+}
+
+<h1>@Model.Titulo</h1>
+
+<br />
+
+<div class="detalhes-container">
+    <!-- Capa do livro à esquerda -->
+    <div class="detalhes-capa">
+        <img src="~/images/capasLivros/@Model.Capa" alt="Capa do Livro" />
+    </div>
+
+    <!-- Atributos do livro à direita -->
+    <div class="detalhes-info">
+        <p><strong>Género:</strong> @Model.Genero</p>
+        <p><strong>Edição:</strong> @Model.Edicao</p>
+        <p><strong>Preço:</strong> @($"{Model.Preco:C2}")</p>
+        <h2>Autores</h2>
+        <ul>
+            @foreach (var autor in Model.LivroAutores.Select(la => la.Autor))
+            {
+                <li>@autor.Nome</li>
+            }
+        </ul>
+
+
+        @if (User.IsInRole("Bibliotecario") || User.IsInRole("Admin"))
+        {
+            <div class="bibliotecario-opcoes">
+                <div class="button-group">
+                    <a asp-action="Edit" asp-route-id="@Model.Isbn" class="btn btn-warning">Editar Livro</a>
+                    @if (ViewBag.NumExemplares > 0)
+                    {
+                        <a asp-action="Create" asp-controller="Requisitas" asp-route-isbn="@Model.Isbn" class="btn btn-primary-details">Requisitar Livro</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-primary-details" disabled>Esgotado</a>
+                    }
+                </div>
+
+                <div class="button-group">
+                    @if (ViewBag.IsEmprestado)
+                    {
+                        <a class="btn btn-primary-details" disabled>Não é possível eliminar livro</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger btn-primary-details" style="background-color: #dc3545 !important;color: white !important" data-bs-toggle="modal" data-bs-target="#deleteModal-@Model.Isbn">Eliminar Livro</a>
+                    }
+                </div>
+            </div>
+        }
+        <a asp-action="Catalogo">Voltar</a>
+    </div>
+</div>
+
+<!-- Modal for delete confirmation -->
+<div class="modal fade" id="deleteModal-@Model.Isbn" tabindex="-1" aria-labelledby="deleteModalLabel-@Model.Isbn" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-danger">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="deleteModalLabel-@Model.Isbn">Confirmar Deleção</h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-light text-center">
+                <h3>Tem a certeza de que deseja apagar este livro?</h3>
+                <br />
+                <h5>@($"{Model.Titulo}")</h5>
+                <br />
+                <div class="d-flex justify-content-center mt-3">
+                    <!-- Confirm Button -->
+                    <form asp-action="Delete" asp-route-id="@Model.Isbn" method="post">
+                        <button type="submit" class="btn btn-warning ms-2">
+                            Sim, Apagar
+                        </button>
+                    </form>
+                    <!-- Cancel Button -->
+                    <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">
+                        Não
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Estilos internos (CSS) -->
+<style>
+
+.detalhes-container {
+    display: flex; /* Alinha os itens em uma linha */
+    gap: 20px; /* Espaçamento entre a capa e as informações */
+    align-items: flex-start; /* Alinha os itens no topo */
+}
+
+.detalhes-capa {
+    flex: 1; /* A capa ocupa 1 parte do espaço disponível */
+    text-align: center; /* Centraliza a capa dentro da div */
+}
+
+    .detalhes-capa img {
+        width: 400px;
+        height: auto;
+        object-fit: contain; /* Ajusta a imagem sem deformar */
+    }
+
+.detalhes-info {
+    flex: 2; /* As informações do livro ocupam 2 partes do espaço disponível */
+    max-width: 500px; /* Define um tamanho máximo para as informações */
+}
+
+    .detalhes-info p {
+        margin: 10px 0; /* Espaçamento entre os parágrafos */
+    }
+
+    .detalhes-info ul {
+        list-style-type: none; /* Remove o marcador da lista */
+        padding-left: 0; /* Remove o recuo */
+    }
+
+        .detalhes-info ul li {
+            margin: 5px 0; /* Espaçamento entre os itens da lista */
+        }
+
+    .detalhes-info a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+        .detalhes-info a:hover {
+            background-color: #0056b3;
+        }
+
+.bibliotecario-opcoes a {
+    margin: 10px 5px 0 0;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+}
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+    }
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+</style>

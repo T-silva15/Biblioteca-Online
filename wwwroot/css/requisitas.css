@@ -1,0 +1,35 @@
+﻿#btn-success-emp {
+    background-color: green !important;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 130px;
+    height: 60px;
+    align-content:center;
+    margin-right:90px;
+}
+
+#btn-danger-emp {
+    background-color: red !important;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 130px;
+    height: 60px;
+    align-content: center;
+    margin-right: -0px;
+}

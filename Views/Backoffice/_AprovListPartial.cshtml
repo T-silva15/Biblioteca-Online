@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Biblioteca_LAB.Models.Utilizador>
+
+@{
+    ViewData["Title"] = "AprovList";
+}
+
+<div id="tabela">
+    <div id="searchContainer">
+        <form asp-action="SearchAprov" method="post" data-ajax="true" data-ajax-method="post"
+              data-ajax-update="#tabela" data-ajax-mode="replace">
+            <div class="input-group">
+                <input class="form-control search-box" type="text" id="searchString" name="searchString" placeholder="Pesquisa">
+                <button type="submit" class="btn btn-orange-secondary-backoffice-search"><i class="bi bi-search"></i></button>
+            </div>
+        </form>
+    </div>
+
+    <br />
+
+    <table class="table table-backoffice">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contacto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tipo)
+                </th>
+                <th>
+                    Bloqueado
+                </th>
+                <th>
+                    Data de Registo
+                </th>
+                <th>
+                    Ações
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="user_@item.Id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contacto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Block)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataSub)
+                    </td>
+                    <td>
+                        <a asp-action="Aprovar" class="backoffice-actions" data-ajax-success="sucessoAprovar" data-ajax="true" data-ajax-mode="replace"
+                           data-item-id="@item.Id" data-ajax-method="get" data-ajax-update="#user_@item.Id" asp-route-id="@item.Id"><i style="color:green;" class="bi bi-check-circle"></i></a>
+
+                        <a asp-action="EliminarAprov" class="backoffice-actions" data-ajax="true" data-ajax-mode="replace"
+                           data-item-id="@item.Id" data-ajax-method="get" data-ajax-update="#user_@item.Id" asp-route-id="@item.Id"><i style="color:red;" class="bi bi-x-circle"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

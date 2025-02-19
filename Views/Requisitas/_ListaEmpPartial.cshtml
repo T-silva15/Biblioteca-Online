@@ -1,0 +1,60 @@
+﻿@using System.Security.Claims
+@model IEnumerable<Biblioteca_LAB.Models.Requisita>
+
+<table id="tabelaEmp" class="table-backoffice">
+    <thead>
+        <tr>
+            <th>Data de Requisição</th>
+            <th>Nome do Leitor</th>
+            <th>Título do Livro</th>
+            <th>Entregue</th>
+            <th>Multa</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DataRequisicao</td>
+                <td>@item.IdLeitorRNavigation.Nome</td>
+                <td>@item.IsbnRNavigation.Titulo</td>
+                <td>
+                    @if (item.Estado)
+                    {
+                        <p><i style="color:green" class="bi bi-check-lg"></i></p>
+                    }
+                    else
+                    {
+                        <p><i style="color:red" class="bi bi-x-lg"></i></p>
+                    }
+                </td>
+                <td>
+                    @if (item.ValorMulta == 0)
+                    {
+                        <p>Sem Multa</p>
+                    }
+                    @if (item.ValorMulta != null && item.ValorMulta != 0)
+                    {
+                        <p>@($"{item.ValorMulta:C2}")</p>
+                    }
+                    else
+                    {
+                        <p></p>
+                    }
+                </td>
+                <td>
+                    @if (item.Estado == false)
+                    {
+                        <a href="@Url.Action("Entregar", "Requisitas", new { idLeitor = item.IdLeitorR, isbn = item.IsbnR })"><i style="color:green;" class="bi bi-journal-arrow-down"></i></a>
+                    }
+                    else
+                    {
+                        <a asp-action="CancelarEntrega" asp-route-idLeitor="@item.IdLeitorR" asp-route-isbn="@item.IsbnR"><i style="color:orange;" class="bi bi-journal-arrow-up"></i></a>
+                    }
+                    <a asp-action="Eliminar" asp-route-idLeitor="@item.IdLeitorR" asp-route-isbn="@item.IsbnR"><i style="color:red;" class="bi bi-trash3"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

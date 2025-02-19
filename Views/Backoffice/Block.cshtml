@@ -1,0 +1,72 @@
+﻿@model Biblioteca_LAB.Models.Utilizador
+
+@{
+    ViewData["Title"] = "Block";
+}
+
+<h1>EditUser</h1>
+
+<h4>Utilizador</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Block">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" value="@Model.Nome" aria-required="false" placeholder="Nome" disabled />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" value="@Model.Username" aria-required="false" placeholder="Username" disabled />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" value="@Model.Email" aria-required="false" placeholder="Email" disabled />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Tipo" class="control-label"></label>
+                <input asp-for="Tipo" class="form-control" value="@Model.Tipo" aria-required="false" placeholder="Tipo" disabled />
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+            </div>
+
+
+            @if(Model.Tipo != "Admin"){
+                <div id="contact" class="form-floating mb-3">
+                    <label asp-for="Contacto" class="control-label"></label>
+                    <input asp-for="Contacto" class="form-control" value="@Model.Contacto" aria-required="false" disabled />
+                    <span asp-validation-for="Contacto" class="text-danger"></span>
+                </div>
+            }
+
+            <div id="dataBlockField" class="form-group">
+                <label asp-for="DataBlock" class="control-label"></label>
+                <input asp-for="DataBlock" class="form-control" type="date" />
+                <span asp-validation-for="DataBlock" class="text-danger"></span>
+            </div>
+
+            <br />
+    
+            <div class="form-group">
+                <input type="submit" value="Bloquear" class="btn btn-Danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="UserList">Voltar</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    
+}
+

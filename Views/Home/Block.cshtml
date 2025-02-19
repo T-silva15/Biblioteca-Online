@@ -1,0 +1,17 @@
+﻿@model Biblioteca_LAB.Models.Utilizador
+
+<div class="container-denied">
+    <header>
+        <h1 class="text-danger access-denied-title">Block</h1>
+    </header>
+    <p class="text-danger access-denied-text">
+        Atualmente a sua conta encontra-se bloqueada até <strong>@Model.DataBlock?.ToString("dd/MM/yyyy")</strong>.
+    </p>
+    <p class="text-danger access-denied-text">
+        Motivo de Bloqueio: <strong>@ViewData["msg"]</strong>
+    </p>
+    <p class="text-danger access-denied-text">
+        Para mais informações, por favor contacte um administrador.
+    </p>
+    <a class="btn-denied" asp-action="Index" asp-controller="Home">Voltar</a>
+</div>  

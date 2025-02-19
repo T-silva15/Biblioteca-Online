@@ -1,0 +1,29 @@
+﻿@model Biblioteca_LAB.Models.Requisita
+
+@{
+    ViewData["Title"] = "Entrega do Livro";
+}
+
+<h1>Entrega Realizada</h1>
+
+<div class="alert alert-success">
+    <p><strong>ISBN do Livro:</strong> @Model.IsbnR</p>
+    <p><strong>Livro entregue com sucesso!</strong></p>
+
+    @if (ViewBag.Multa > 0)
+    {
+        <p class="text-danger">
+            <strong>Multa por atraso:</strong> @ViewBag.Multa€
+        </p>
+    }
+    else
+    {
+        <p class="text-success">
+            <strong>Sem multa:</strong> Livro devolvido no prazo.
+        </p>
+    }
+</div>
+
+<div>
+    <a href="@Url.Action("Index", "Requisitas")" class="btn btn-primary">Voltar ao Index</a>
+</div>

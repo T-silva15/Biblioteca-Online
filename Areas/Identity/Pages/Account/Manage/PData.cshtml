@@ -1,0 +1,81 @@
+﻿@page
+@model PDataModel
+@{
+    ViewData["Title"] = "Dados Pessoais";
+    ViewData["ActivePage"] = ManageNavPages.PData;
+}
+<h3 id="tituloPdata">@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div>
+    <form id="delete-user" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+        <div class="form-floating mb-3">
+            <input asp-for="Input.Name" class="form-control" value="@ViewData["name"]" />
+            <label asp-for="Input.Name" class="form-label"></label>
+            <span asp-validation-for="Input.Name" class="text-danger"></span>
+        </div>
+
+        @if (!User.IsInRole("Admin"))
+        {
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Contacto" class="form-control" aria-required="true" value="@ViewData["contacto"]" />
+                <label asp-for="Input.Contacto" class="form-label"></label>
+                <span asp-validation-for="Input.Contacto" class="text-danger"></span>
+            </div>
+
+            if (!User.IsInRole("Bibliotecario"))
+            {
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.CodigoPostal" class="form-control" autocomplete="current-password" value="@ViewData["codigoPostal"]" aria-required="true" />
+                    <label asp-for="Input.CodigoPostal" class="form-label"></label>
+                    <span asp-validation-for="Input.CodigoPostal" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Cidade" class="form-control" autocomplete="current-password" value="@ViewData["cidade"]" aria-required="true" />
+                    <label asp-for="Input.Cidade" class="form-label"></label>
+                    <span asp-validation-for="Input.Cidade" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Endereco" class="form-control" autocomplete="current-password" value="@ViewData["endereco"]" aria-required="true" />
+                    <label asp-for="Input.Endereco" class="form-label"></label>
+                    <span asp-validation-for="Input.Endereco" class="text-danger"></span>
+                </div>
+            }
+        }
+        <button class="btn btn-profile bt-lg" type="submit">Guardar</button>
+    </form>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <h5>@ViewData["Title"]</h5>
+    <p>
+        <bold>Esta ação eliminará permanentemente os seus dados, e como tal, não pode ser revertida.</bold>
+    </p>
+    <form method="post" asp-page-handler="DeleteProfile">
+        <div class="form-floating mb-3">
+            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Introduza a sua password." />
+            <label asp-for="Input.Password" class="form-label"></label>
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirme a sua password." />
+            <label asp-for="Input.ConfirmPassword" class="form-label"></label>
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+        </div>
+        <button class="btn-delete-profile" style="color:red; background-color:red" type="submit">Eliminar Perfil</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

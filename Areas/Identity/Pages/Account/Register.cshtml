@@ -1,0 +1,141 @@
+﻿@page
+@model LABW_Biblioteca2024.Areas.Identity.Pages.Account.RegisterModel
+
+@{
+    ViewData["Title"] = (User.Identity.IsAuthenticated && User.IsInRole("Admin")) ? "Adicionar Utilizador" : "Registar Utilizador";
+}
+
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+
+    <div class="form-container-register">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>@(User.Identity.IsAuthenticated && User.IsInRole("Admin") ? "Adicionar um novo utilizador" : "Criar um novo utilizador")</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+            <!-- Inputs organized into rows -->
+            <div class="form-row-register">
+                <div class="form-group-register">
+                    <div class="form-floating mb-3">
+                        <input id="name" asp-for="Input.Name" class="form-control" aria-required="true" placeholder="Nome" />
+                        <label asp-for="Input.Name">Nome</label>
+                        <span asp-validation-for="Input.Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group-register">
+                    <div class="form-floating mb-3">
+                        <input id="username" asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="Username" />
+                        <label asp-for="Input.UserName">Username</label>
+                        <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row-register">
+                <div class="form-group-register">
+                    <div class="form-floating mb-3">
+                        <input id="email" asp-for="Input.Email" class="form-control" autocomplete="email" aria-required="true" placeholder="Email" />
+                        <label asp-for="Input.Email">Email</label>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group-register">
+                    <div class="form-floating mb-3">
+                        <input id="password" asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
+                        <label asp-for="Input.Password">Password</label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row-register">
+                <div class="form-group-register">
+                    <div class="form-floating mb-3">
+                        <input id="confirmPassword" asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirmar Password" />
+                        <label asp-for="Input.ConfirmPassword">Confirmar Password</label>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div id="contact"  class="form-group-register">
+                    <div class="form-floating mb-3">
+                        <input  asp-for="Input.Contact" class="form-control" aria-required="false" placeholder="Contacto" />
+                        <label asp-for="Input.Contact">Contacto</label>
+                        <span asp-validation-for="Input.Contact" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row-register">
+                <div id="postalCode"  class="form-group-register">
+                    <div class="form-floating mb-3">
+                        <input  asp-for="Input.PostalCode" class="form-control" aria-required="false" placeholder="Código Postal" />
+                        <label asp-for="Input.PostalCode">Código Postal</label>
+                        <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div id="city" class="form-group-register">
+                    <div class="form-floating mb-3">
+                        <input  asp-for="Input.City" class="form-control" aria-required="false" placeholder="Cidade" />
+                        <label asp-for="Input.City">Cidade</label>
+                        <span asp-validation-for="Input.City" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row-register">
+                <div id="address" class="form-group-register">
+                    <div class="form-floating mb-3">
+                        <input  asp-for="Input.Address" class="form-control" aria-required="false" placeholder="Endereço" />
+                        <label asp-for="Input.Address">Endereço</label>
+                        <span asp-validation-for="Input.Address" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group-register">
+                    <div class="form-floating mb-3">
+                        <select asp-for="Input.Role" class="form-control" asp-items='new SelectList(ViewBag.roles,"Name","Name")'></select>
+                        <label asp-for="Input.Role">Tipo</label>
+                        <span asp-validation-for="Input.Role" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <button id="registerSubmit" type="submit" class="btn-primary-register">
+                @(User.Identity.IsAuthenticated && User.IsInRole("Admin") ? "Adicionar" : "Register")
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // JavaScript to toggle fields based on selected role
+        document.querySelector('select[name="Input.Role"]').addEventListener('change', function () {
+            var role = this.value;
+            if (role === 'Bibliotecario') {
+                document.getElementById('address').style.display = 'none';
+                document.getElementById('city').style.display = 'none';
+                document.getElementById('postalCode').style.display = 'none';
+                document.getElementById('contact').style.display = 'block';
+            } else if (role === 'Admin') {
+                document.getElementById('address').style.display = 'none';
+                document.getElementById('city').style.display = 'none';
+                document.getElementById('postalCode').style.display = 'none';
+                document.getElementById('contact').style.display = 'none';
+            } else {
+                document.getElementById('address').style.display = 'block';
+                document.getElementById('city').style.display = 'block';
+                document.getElementById('postalCode').style.display = 'block';
+                document.getElementById('contact').style.display = 'block';
+            }
+        });
+    </script>
+}

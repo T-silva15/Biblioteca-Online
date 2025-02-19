@@ -1,0 +1,84 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            @if (User.IsInRole("Admin") || (User.IsInRole("Bibliotecario")))
+            {
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bibModal">Menu de Bibliotecário</button>
+            }
+        </li>
+        <li class="nav-item">
+            @if (User.IsInRole("Admin"))
+            {
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#backOfficeModal">BackOffice</button>
+            }
+        </li>
+        <li class="nav-item-profile">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                <img src="~/images/src/profile-circle.svg" alt="User Profile" class="rounded-circle" style="width: 40px; height: 40px; vertical-align: middle;">
+                <span class="ms-1">Olá @User.Identity?.Name!</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link btn btn-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>
+
+<div class="modal fade" id="backOfficeModal" tabindex="-1" aria-labelledby="backOfficeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-orange">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="backOfficeModalLabel">BackOffice da Biblioteca</h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-light-gray text-center">
+                <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-orange-secondary-backoffice">Adicionar Utilizador</a>
+                <br />
+                <a asp-action="List" asp-controller="Backoffice" class="btn btn-orange-secondary-backoffice">Lista de Utilizadores</a>
+                <br />
+                <a asp-action="AdminActions" asp-controller="Backoffice" class="btn btn-orange-secondary-backoffice">Alterações de Administradores</a>
+                <br />
+                <br />
+                <span class="text-dark">Número de Utilizadores:</span> <span>@ViewBag.NumUsers</span><br />
+                <span class="text-dark">Número de Livros:</span> <span>@ViewBag.NumLivros</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="bibModal" tabindex="-1" aria-labelledby="bibModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-orange">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="bibModalLabel">Menu de Bibliotecário</h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-light-gray text-center">
+                <br />
+                <a asp-controller="Livros" asp-action="Create" id="btnAddLivros" class="btn btn-orange-secondary-backoffice">Adicionar Livro</a>
+                <br />
+                <br />
+                <a asp-controller="Requisitas" asp-action="Index" id="btnListEmp" class="btn btn-orange-secondary-backoffice">Lista de Empréstimos</a>
+                <br />
+                <br />
+                <span class="text-dark">Número de Livros:</span> <span>@ViewBag.NumLivros</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Biblioteca_LAB.Models.Utilizador>
+
+@{
+    ViewData["Title"] = "AprovList";
+}
+
+
+
+<h1 id="title-backoffice">Lista de Utilizadores</h1>
+
+<div id="buttons-backoffice">
+    <a asp-action="UserListPartial" id="userlist" class="btn btn-orange-secondary-backoffice-actions" data-ajax="true" data-ajax-mode="replace"
+       data-ajax-method="get" data-ajax-update="#tabela">User List</a>
+
+    <a asp-action="AprovListPartial" id="aprovlist" class="btn btn-orange-secondary-backoffice-actions" data-ajax="true" data-ajax-mode="replace"
+       data-ajax-method="get" data-ajax-update="#tabela">Aprov List</a>
+</div>
+
+
+
+<div id="tabela">
+
+</div>

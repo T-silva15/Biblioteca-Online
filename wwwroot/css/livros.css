@@ -1,0 +1,76 @@
+﻿
+
+#genero, #autor, #preco{
+    height: 50px;
+    width: 150px !important;
+    margin: 0px 5px 0px 15px !important;
+}
+
+#search {
+    height: 50px;
+    width: 750px;
+}
+
+.btn-search {
+    height: 50px;
+    width: 155px;
+    margin-right: -10px;
+}
+#genero, #autor, #search, .btn-search{
+    font-size: 18px;
+}
+
+.form {
+
+}
+
+.bibliotecario-opcoes {
+    display: flex;
+    flex-direction: column; /* Stack the button groups */
+    gap: 10px; /* Space between groups */
+}
+
+.button-group {
+    display: flex; /* Align buttons in a row */
+    gap: 10px; /* Add space between the buttons */
+}
+
+.bibliotecario-opcoes a {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+}
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+    }
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+.btn-primary-details {
+    background-color: #ff7700;
+
+}
+
+    .btn-primary-details:hover {
+        background-color: #ff9900;
+    }

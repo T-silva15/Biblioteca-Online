@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Biblioteca_LAB.Models.GereAdmViewModel>
+
+@{
+    ViewData["Title"] = "Alterações de Administradores";
+    var alteracoesAdm = ViewBag.AlteracoesAdm;
+}
+
+<h1 class="title-backoffice">@ViewData["Title"]</h1>
+
+
+<partial name="_AdminActions"/>

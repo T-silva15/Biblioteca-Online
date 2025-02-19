@@ -1,0 +1,62 @@
+﻿@using System.Security.Claims
+@model IEnumerable<Biblioteca_LAB.Models.Requisita>
+
+@{
+    ViewData["Title"] = "Lista de Empréstimos";
+}
+
+<h1>Requisições</h1>
+
+<div id="buttons-emp">
+    <a asp-action="EntreguePartial" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)" id="Emplist" class="btn btn-orange-secondary-backoffice-actions" data-ajax="true" data-ajax-mode="replace"
+       data-ajax-method="get" data-ajax-update="#tabelaEmp">Por Entregar</a>
+
+    <a asp-action="NaoEntreguePartial" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)" id="NaoEmplist" class="btn btn-orange-secondary-backoffice-actions" data-ajax="true" data-ajax-mode="replace"
+       data-ajax-method="get" data-ajax-update="#tabelaEmp">Entregue</a>
+</div>
+
+<br />
+<br />
+
+<table id="tabelaEmp" class="table-backoffice">
+    <thead>
+        <tr>
+            <th>Data de Requisição</th>
+            <th>Nome do Leitor</th>
+            <th>Título do Livro</th>
+            <th>Entregue</th>
+            <th>Multa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DataRequisicao</td>
+                <td>@item.IdLeitorRNavigation.Nome</td>
+                <td>@item.IsbnRNavigation.Titulo</td>
+                <td>
+                    @if (item.Estado)
+                    {
+                        <p><i style="color:green" class="bi bi-check-lg"></i></p>
+                    }
+                    else
+                    {
+                        <p><i style="color:red" class="bi bi-x-lg"></i></p>
+                    }
+                </td>
+                <td>
+                    @if (item.ValorMulta == 0) {
+                        <p>Sem Multa</p>
+                    }
+                    @if (item.ValorMulta != null && item.ValorMulta != 0){
+                        <p>@item.ValorMulta</p>
+                    }
+                    else{
+                        <p></p>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

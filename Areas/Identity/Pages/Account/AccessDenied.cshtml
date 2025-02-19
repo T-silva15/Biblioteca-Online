@@ -1,0 +1,17 @@
+﻿@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Acesso Negado";
+}
+
+<div class="container-denied">
+    <header>
+        <h1 class="text-danger access-denied-title">@ViewData["Title"]</h1>
+    </header>
+    <p class="text-danger access-denied-text">
+        Desculpe, mas você não tem permissão para aceder a esta página. <br />
+        Se acredita que isto é um erro, por favor entre em contato com um administrador do sistema na sua biblioteca mais próxima.
+    </p>
+    <a class="btn-denied" asp-action="Index" asp-controller="Home">Voltar</a>
+</div>
+
